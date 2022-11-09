@@ -2,7 +2,7 @@
 GREEN_COLOR='\033[0;32m'
 RED_COLOR='\033[0;31m'
 NO_COLOR='\033[0m'
-BLOCK=754555
+BLOCK=580000
 VERSION=v0.0.2
 echo -e "$GREEN_COLOR YOUR NODE WILL BE UPDATED TO VERSION: $VERSION ON BLOCK NUMBER: $BLOCK $NO_COLOR\n"
 for((;;)); do
@@ -10,9 +10,10 @@ for((;;)); do
 	if ((height>=$BLOCK)); then
 	
 		sudo systemctl stop empowerd
-		cd $HOME && rm -rf empower
-		git clone https://github.com/empowerchain/empowerchain && cd empower
+		cd $HOME && rm -rf empowerchain
+		git clone https://github.com/empowerchain/empowerchain && cd empowerchain
 		git checkout v0.0.2
+		cd chain
 		make build
 		sudo mv build/empowerd $(which empowerd)
 		echo "restart the system..."
